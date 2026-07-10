@@ -1,6 +1,6 @@
 # AI CRM CSV Importer (GrowEasy Assignment Submission)
 
-An intelligent, production-ready full-stack application that leverages Google Gemini AI to parse, sanitize, and map arbitrary CRM lead CSV files into a standard CRM schema. 
+An intelligent, production-ready full-stack application that leverages Gemini AI to parse, sanitize, and map arbitrary CRM lead CSV files into a standard CRM schema. 
 
 This tool does not rely on static column indices or pre-defined names. Instead, it utilizes Generative AI to understand the context of the CSV structure and automatically format contacts according to the target specifications.
 
