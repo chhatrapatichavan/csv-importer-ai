@@ -48,8 +48,7 @@ This tool does not rely on static column indices or pre-defined names. Instead, 
 Copy the `.env.example` file and create a `.env` in the root folder:
 
 ```env
-# Google Gemini API key used for full-stack server-side processing
-GEMINI_API_KEY="your-gemini-api-key"
+
 
 # Base URL where the app is hosted (injected automatically in production)
 APP_URL="http://localhost:3000"
@@ -74,6 +73,9 @@ Starts the custom Express server and mounts Vite's hot-reload middleware:
 npm run dev
 ```
 Open [http://localhost:3000](http://localhost:3000) to view the application.
+Open [http://localhost:3000](https://ai-csv-importer-dm7sv5w81-chatrapatichavan8-7087s-projects.vercel.app/
+) to view the application.
+
 
 ### 3. Build for Production
 Compiles the static client asset bundle via Vite, and bundles the Node server entrypoint into a single self-contained `.cjs` module via `esbuild`:
@@ -90,7 +92,7 @@ npm run start
 
 ## 🧠 AI Prompt Engineering Strategy
 
-Our AI mapping layer is powered by the `@google/genai` TypeScript SDK on the server using **Gemini 3.5 Flash** with **Structured JSON Schema Constraints**.
+Our AI mapping layer is powered by the TypeScript SDK on the server using **Gemini 3.5 Flash** with **Structured JSON Schema Constraints**.
 
 ### Design Principles:
 1.  **Structured Output Schema**: Instead of raw text completions or code fences, we declare a nested schema parameter in the Gemini configuration `responseSchema` (`Type.ARRAY` of `Type.OBJECT`). This strictly guarantees that the model response is a perfectly formatted, parseable JSON block, eliminating runtime JSON parsing errors.
