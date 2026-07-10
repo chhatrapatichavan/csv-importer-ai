@@ -49,6 +49,8 @@ Copy the `.env.example` file and create a `.env` in the root folder:
 
 ```env
 
+Open [http://localhost:3000](https://ai-csv-importer-dm7sv5w81-chatrapatichavan8-7087s-projects.vercel.app/
+) to view the application.
 
 # Base URL where the app is hosted (injected automatically in production)
 APP_URL="http://localhost:3000"
