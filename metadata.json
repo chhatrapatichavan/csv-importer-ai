@@ -1,0 +1,6 @@
+{
+  "name": "AI CSV Importer",
+  "description": "An AI-powered CSV importer that intelligently parses and maps fields into a standard CRM schema using Gemini AI.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}
