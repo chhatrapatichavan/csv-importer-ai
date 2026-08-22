@@ -95,19 +95,4 @@ npm run start
 
 ---
 
-## 🧠 AI Prompt Engineering Strategy
 
-Our AI mapping layer is powered by the TypeScript SDK on the server using **Gemini 3.5 Flash** with **Structured JSON Schema Constraints**.
-
-### Design Principles:
-1.  **Structured Output Schema**: Instead of raw text completions or code fences, we declare a nested schema parameter in the Gemini configuration `responseSchema` (`Type.ARRAY` of `Type.OBJECT`). This strictly guarantees that the model response is a perfectly formatted, parseable JSON block, eliminating runtime JSON parsing errors.
-2.  **No Hallucinations**: Prompt guidelines instruct Gemini to leave fields blank rather than inventing data.
-3.  **Strict Skipped Tracking**: Instead of just filtering out columns, Gemini maps rows into a payload specifying `skipped: true` with a detailed `skip_reason` (e.g. "Missing both contact email and phone"). The frontend parses this to display Skipped row records.
-4.  **Data Coalescing**: Gemini combines separate first and last name columns into a single `name` attribute, and aggregates excess email addresses or phone lines into the `crm_note` block automatically.
-
-
-## 🛠️ Troubleshooting
-
-*   **API Key Errors**: If the `GEMINI_API_KEY` is not present, the server falls back gracefully to an intelligent header regex matcher to allow users to preview the landing page, download sample CSVs, and inspect tables. Ensure your secret is set inside your cloud secrets dashboard.
-*   **Large Files**: Files over 10MB are rejected by Express Multer limits automatically to safeguard memory performance.
-*   **Malformed Rows**: Papa Parse greedily skips completely empty rows, correcting for trailing comma spaces or broken carriage returns.
