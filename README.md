@@ -6,6 +6,11 @@ This tool does not rely on static column indices or pre-defined names. Instead, 
 
 ---
 
+DEMO: Open [http://localhost:3000](http://localhost:3000) to view the application.
+Open [http://localhost:3000](https://ai-csv-importer-dm7sv5w81-chatrapatichavan8-7087s-projects.vercel.app/
+
+
+
 ## 🚀 Key Features
 
 *   **Intelligent AI Schema Mapping**: Automatically detects and maps name, email, phone number, company, location (city, state, country), status, and notes regardless of column naming conventions.
@@ -74,8 +79,6 @@ Starts the custom Express server and mounts Vite's hot-reload middleware:
 ```bash
 npm run dev
 ```
-Open [http://localhost:3000](http://localhost:3000) to view the application.
-Open [http://localhost:3000](https://ai-csv-importer-dm7sv5w81-chatrapatichavan8-7087s-projects.vercel.app/
 ) to view the application.
 
 
@@ -102,65 +105,6 @@ Our AI mapping layer is powered by the TypeScript SDK on the server using **Gemi
 3.  **Strict Skipped Tracking**: Instead of just filtering out columns, Gemini maps rows into a payload specifying `skipped: true` with a detailed `skip_reason` (e.g. "Missing both contact email and phone"). The frontend parses this to display Skipped row records.
 4.  **Data Coalescing**: Gemini combines separate first and last name columns into a single `name` attribute, and aggregates excess email addresses or phone lines into the `crm_note` block automatically.
 
----
-
-## 📡 API Documentation
-
-### `POST /api/import`
-Uploads and parses a lead sheet.
-
-*   **Request Type**: `multipart/form-data`
-*   **Body Parameters**:
-    *   `file`: The CSV file (Key: `file`, maximum size 10MB).
-*   **Response**: Conforms to the `ImportResult` contract.
-
-#### Sample Response:
-```json
-{
-  "success": true,
-  "importedCount": 3,
-  "skippedCount": 1,
-  "records": [
-    {
-      "created_at": "2026-07-08T09:20:00Z",
-      "name": "Arjun Patel",
-      "email": "arjun.patel@gmail.com",
-      "country_code": "91",
-      "mobile_without_country_code": "9876543210",
-      "company": "Patel Solutions",
-      "city": "Mumbai",
-      "crm_status": "GOOD_LEAD_FOLLOW_UP",
-      "data_source": "leads_on_demand"
-    }
-  ],
-  "skippedRecords": [
-    {
-      "row": 4,
-      "reason": "Missing both email and phone contact info",
-      "data": {
-        "Customer Name": "Invalid Lead",
-        "Mail ID": "",
-        "Contact Number": ""
-      }
-    }
-  ],
-  "summary": {
-    "totalProcessed": 4,
-    "successful": 3,
-    "skipped": 1,
-    "statusDistribution": {
-      "GOOD_LEAD_FOLLOW_UP": 2,
-      "SALE_DONE": 1
-    },
-    "dataSourceDistribution": {
-      "leads_on_demand": 2,
-      "eden_park": 1
-    }
-  }
-}
-```
-
----
 
 ## 🛠️ Troubleshooting
 
